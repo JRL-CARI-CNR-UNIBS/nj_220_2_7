@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="nj_220_2_7" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:include filename="$(find nj_220_2_7_description)/urdf/nj_220_2_7.xacro" />
+
+<xacro:property name="prefix" value="''" />
+
+<link name="world"/>
+  <xacro:nj_220_2_7 prefix="${prefix}"/>
+  <joint name="${prefix}world_to_base_link" type="fixed">
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <parent link="world"/>
+      <child link="${prefix}base_link"/>
+  </joint>
+</robot>

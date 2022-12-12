@@ -1,0 +1,11 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find nj_220_2_7_gazebo)/config/nj_220_2_7_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/nj_220_2_7" args="joint_state_controller
+                                          robust_inverse_dynamics"/>
+
+</launch>

@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: nj_220_2_7_description
+    relative_path: urdf/nj_220_2_7_alone.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/nj_220_2_7.srdf
+  CONFIG:
+    author_name: Michele Delledonne
+    author_email: m.delledonne002@unibs.it
+    generated_timestamp: 1670842337

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="nj_220_2_7_roscontrol"  params="prefix">
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>${prefix}/nj_220_2_7</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <!-- Mimic Joint Plug in for Gazebo-->
+  <xacro:macro name="mimic_joint_plugin_gazebo" params="name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=''">
+    <gazebo>
+      <plugin name="${name_prefix}mimic_joint_plugin" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+        <joint>${parent_joint}</joint>
+        <mimicJoint>${mimic_joint}</mimicJoint>
+        <xacro:if value="${has_pid}">
+          <hasPID />
+        </xacro:if>
+        <multiplier>${multiplier}</multiplier>
+        <offset>${offset}</offset>
+        <sensitiveness>${sensitiveness}</sensitiveness>
+        <maxEffort>${max_effort}</maxEffort>
+        <xacro:unless value="${robot_namespace == ''}">
+          <robotNamespace>($robot_namespace)</robotNamespace>
+        </xacro:unless>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:mimic_joint_plugin_gazebo name_prefix="${prefix}joint_2m"
+    parent_joint="${prefix}joint_2" mimic_joint="${prefix}joint_2m"
+    has_pid="false" multiplier="1.0" max_effort="10000.0" />
+  <!--Mimic Joint Plug in for Gazebo -->
+
+
+  <!--Mimic Joint Plug in for Gazebo-->
+    <!-- <xacro:macro name="mimic_joint_plugin_gazebo" params="name_prefix parent_joint mimic_joint has_pid:=false multiplier:=1.0 offset:=0 sensitiveness:=0.0 max_effort:=1.0 robot_namespace:=''">
+      <gazebo>
+        <plugin name="${name_prefix}mimic_joint_plugin" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+          <joint>${parent_joint}</joint>
+          <mimicJoint>${mimic_joint}</mimicJoint>
+          <xacro:if value="${has_pid}">
+            <hasPID />
+          </xacro:if>
+          <multiplier>${multiplier}</multiplier>
+          <offset>${offset}</offset>
+          <sensitiveness>${sensitiveness}</sensitiveness>
+          <maxEffort>${max_effort}</maxEffort>
+          <xacro:unless value="${robot_namespace == ''}">
+            <robotNamespace>($robot_namespace)</robotNamespace>
+          </xacro:unless>
+        </plugin>
+      </gazebo>
+    </xacro:macro>
+
+    <xacro:macro name="controller_plugin_gazebo" params="robot_namespace:=''">
+      <gazebo>
+        <plugin name="ros_control" filename="libgazebo_ros_control.so">
+          <xacro:unless value="${robot_namespace == ''}">
+            <robotNamespace>($robot_namespace)</robotNamespace>
+          </xacro:unless>
+          <controlPeriod>0.001</controlPeriod>
+        </plugin>
+      </gazebo>
+    </xacro:macro>
+    <controller_plugin_gazebo />
+
+     <xacro:mimic_joint_plugin_gazebo name_prefix="${prefix}joint_2m"
+          parent_joint="${prefix}joint_2" mimic_joint="${prefix}joint_2m"
+          has_pid="false" multiplier="1.0" max_effort="10.0" /> -->
+      <!--Mimic Joint Plug in for Gazebo-->
+
+  <gazebo reference="${prefix}link_6_to_flange">
+      <provideFeedback>true</provideFeedback>
+      <disableFixedJointLumping>true</disableFixedJointLumping>
+      <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <gazebo>
+      <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+          <updateRate>1000.0</updateRate>
+          <topicName>${prefix}gripper/wrench</topicName>
+          <jointName>${prefix}link_6_to_flange</jointName>
+      </plugin>
+  </gazebo>
+
+</xacro:macro>
+</robot>

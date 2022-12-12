@@ -1,0 +1,64 @@
+control_configurations:
+- name: "watch"
+  components:
+  - {hardware_interface: "level0_hw", controller: "js_pub", description: ""}
+  - {hardware_interface: "level0_hw", controller: "ft_pub", description: ""}
+
+- name: "ctrl"
+  depends: ["watch"]
+  hidden: true  # do not appear in the gui
+  components:
+  - {hardware_interface: "level0_hw", controller: "ctrl1", description: ""}
+
+- name: "posvel_ctrl"
+  depends: ["watch"]
+  hidden: true  # do not appear in the gui
+  components:
+  - {hardware_interface: "level0_hw", controller: "posvel_ctrl", description: ""}
+
+- name: "posvel_freq_est"
+  depends: ["posvel_ctrl"]
+  hidden: false  # do not appear in the gui
+  components:
+  - {hardware_interface: "level1_hw", controller: "freq_est", description: ""}
+
+- name: "posvel_ctrl_planner"
+  depends: ["posvel_ctrl"]
+  hidden: true  # do not appear in the gui
+  components:
+  - {hardware_interface: "level1_hw", controller: "microinterpolator", description: ""}
+
+- name: "trajectory_tracking"
+  depends: ["ctrl"]
+  components:
+  - {hardware_interface: "level1_hw", controller: "microinterpolator", description: ""}
+
+- name: "impedance"
+  depends: ["watch"]
+  components:
+  - {hardware_interface: "level0_hw", controller: "cart_impedance", description: "",  runtime_check: false} # disable check controller status
+
+- name: "trajectory_tracking_impedance"
+  depends: ["impedance"]
+  components:
+  - {hardware_interface: "level1_hw", controller: "microinterpolator_impedance", description: ""}
+
+- name: simple_touch
+  depends: ["cartesian_velocity"]
+  components:
+  - {hardware_interface: "level1_hw", controller: "simple_touch", runtime_check: false}
+
+- name: "cartesian_velocity"
+  depends: ["watch"]
+  components:
+  - {hardware_interface: "level0_hw", controller: "cartesian_velocity",  runtime_check: false}
+
+- name: "cartesian_position"
+  depends: ["watch"]
+  components:
+  - {hardware_interface: "level0_hw", controller: "cartesian_position",  runtime_check: true}
+
+- name: "trajectory_replanning"
+  depends: ["ctrl"]
+  components:
+  - {hardware_interface: "level1_hw", controller: "replanner", description: ""}
