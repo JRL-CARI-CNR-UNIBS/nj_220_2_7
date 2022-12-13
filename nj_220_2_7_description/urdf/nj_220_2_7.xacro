@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-<!-- <xacro:macro name="nj_220_2_7" params="prefix:='' interface:=hardware_interface/EffortJointInterface"> -->
-<xacro:macro name="nj_220_2_7" params="prefix:='' interface:=hardware_interface/PositionJointInterface">
+<xacro:macro name="nj_220_2_7" params="prefix:='' interface:=hardware_interface/EffortJointInterface">
+<!-- <xacro:macro name="nj_220_2_7" params="prefix:='' interface:=hardware_interface/PositionJointInterface"> -->
 
   <xacro:property name="joint_1_vel_limit" value="1.74533" />    <!--  100°/s -->
   <xacro:property name="joint_2_vel_limit" value="1.5708"  />    <!--  90°/s -->
@@ -387,8 +387,7 @@
       velocity="${joint_6_vel_limit}" />
   </joint>
 
-  <!-- Parallel Linkages  -->
-   <link name="${prefix}link_3_virtual">
+  <link name="${prefix}link_3_virtual">
      <inertial>
        <origin xyz="0 0 0" rpy="0 0 0" />
        <mass value="0.01" />
@@ -401,90 +400,71 @@
          izz="0.00000" />
      </inertial>
    </link>
-   <joint name="${prefix}joint_2m" type="continuous">
+  <joint name="${prefix}joint_2m" type="revolute">
      <origin xyz="0 1.175 0.0955" rpy="3.1416 0 -1.5708" />
      <parent link="${prefix}link_2" />
      <child link="${prefix}link_3_virtual" />
      <axis xyz="0 0 -1" />
      <mimic joint="${prefix}joint_2" multiplier="1" offset="-1.570796326794897" />
-   </joint>
-   <link name="${prefix}link_2_1">
-     <inertial>
-       <origin
-         xyz="0.14943 -0.0063786 0.023924"
-         rpy="0 0 0" />
-       <mass
-         value="41.905" />
-       <inertia
-         ixx="0.15952"
-         ixy="0.030699"
-         ixz="-0.02238"
-         iyy="0.74929"
-         iyz="0.0001768"
-         izz="0.83836" />
-     </inertial>
-     <visual>
-       <origin
-         xyz="0 0 0"
-         rpy="0 0 0" />
-       <geometry>
-         <mesh
-           filename="package://nj_220_2_7_gazebo/meshes/link_2_1.STL" />
-       </geometry>
-       <material
-         name="">
-         <color
-           rgba="1 0 0 1" />
-       </material>
-     </visual>
-     <collision>
-       <origin
-         xyz="0 0 0"
-         rpy="0 0 0" />
-       <geometry>
-         <mesh
-           filename="package://nj_220_2_7_gazebo/meshes/link_2_1.STL" />
-       </geometry>
-     </collision>
-   </link>
-   <joint name="${prefix}joint_2_1" type="continuous">
-     <origin
-       xyz="-0.4 0.499 -0.1945"
-       rpy="0 0 -0.087266" />
-     <parent
-       link="${prefix}link_1" />
-     <child
-       link="${prefix}link_2_1" />
-     <axis
-       xyz="0 0 -1" />
-     <mimic joint="${prefix}joint_3" multiplier="1" offset="0" />
-   </joint>
-   <link name="${prefix}link_2_2_virtual">
-     <inertial>
-       <origin xyz="0 0 0" rpy="0 0 0" />
-       <mass value="0.01" />
-       <inertia
-         ixx="0.00001"
-         ixy="0.00000"
-         ixz="0.00000"
-         iyy="0.00001"
-         iyz="0.00000"
-         izz="0.00000" />
-     </inertial>
-   </link>
-   <joint name="${prefix}joint_2_2" type="continuous">
-     <origin
-       xyz="0.35 0 0.015"
-       rpy="0 0 0.08723" />
-     <parent
-       link="${prefix}link_2_1" />
-     <child
-       link="${prefix}link_2_2_virtual" />
-     <axis
-       xyz="0 0 1" />
-     <mimic joint="${prefix}joint_3" multiplier="1" offset="0"/>
-   </joint>
-   <link name="${prefix}link_2_2">
+     <limit
+       lower="-6.2831853"
+       upper="6.2831853"
+       effort="100000"
+       velocity="${joint_6_vel_limit}" />
+  </joint>
+  <!-- <joint name="${prefix}joint_3" type="revolute">
+      <origin xyz="0 1.175 0.0955" rpy="3.1416 0 3.1416" />
+      <parent link="${prefix}link_2" />
+      <child link="${prefix}link_3" />
+      <axis xyz="0 0 -1" />
+      <limit
+        lower="-6.2831853"
+        upper="6.2831853"
+        effort="0"
+        velocity="${joint_3_vel_limit}" />
+  </joint> -->
+
+  <!-- <link name="${prefix}link_2_2">
+   <inertial>
+     <origin xyz="0 0 0" rpy="0 0 0" />
+     <mass value="0.01" />
+     <inertia
+       ixx="0.00001"
+       ixy="0.00000"
+       ixz="0.00000"
+       iyy="0.00001"
+       iyz="0.00000"
+       izz="0.00000" />
+   </inertial>
+  </link>
+  <joint name="${prefix}l3_to_l22" type="continuous">
+    <origin xyz="0.34867 -0.0305 -0.165" rpy="0 0 3.1416" />
+    <parent link="${prefix}link_3" />
+    <child link="${prefix}link_2_2" />
+    <axis xyz="0 0 1" />
+    <mimic joint="${prefix}joint_2" multiplier="1" offset="-1.570796326794897" />
+  </joint>
+  <link name="${prefix}link_2_2_virtual">
+   <inertial>
+     <origin xyz="0 0 0" rpy="0 0 0" />
+     <mass value="0.01" />
+     <inertia
+       ixx="0.00001"
+       ixy="0.00000"
+       ixz="0.00000"
+       iyy="0.00001"
+       iyz="0.00000"
+       izz="0.00000" />
+   </inertial>
+  </link>
+  <joint name="${prefix}l22_to_l22v" type="continuous">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="${prefix}link_2_2" />
+    <child link="${prefix}link_2_2_virtual" />
+    <axis xyz="0 0 1" />
+    <mimic joint="${prefix}joint_3" multiplier="1" offset="-1.570796326794897" />
+  </joint>
+  <link name="${prefix}link_2_2_real">
      <inertial>
        <origin
          xyz="0.064434 0.51885 0.014848"
@@ -523,14 +503,126 @@
        </geometry>
      </collision>
    </link>
-   <joint name="${prefix}joint_2_3" type="continuous">
-     <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
-     <parent link="${prefix}link_2_2_virtual" />
-     <child link="${prefix}link_2_2" />
-     <axis xyz="0 0 -1" />
-     <mimic joint="${prefix}joint_2" multiplier="-1" offset="0"/>
-   </joint>
- <!-- End Parallel Linkages -->
+  <joint name="${prefix}l22v_to_l22r" type="fixed">
+    <origin xyz="0 -1.175 -0.015" rpy="0 0 0" />
+    <parent link="${prefix}link_2_2_virtual" />
+    <child link="${prefix}link_2_2_real" />
+    <axis xyz="0 0 0" />
+    <limit
+      lower="-6.2831853"
+      upper="6.2831853"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link name="${prefix}link_2_1">
+   <inertial>
+     <origin xyz="0 0 0" rpy="0 0 0" />
+     <mass value="0.01" />
+     <inertia
+       ixx="0.00001"
+       ixy="0.00000"
+       ixz="0.00000"
+       iyy="0.00001"
+       iyz="0.00000"
+       izz="0.00000" />
+   </inertial>
+  </link>
+  <joint name="${prefix}l22v_to_l21" type="continuous">
+    <origin xyz="0 -1.175 -0.015" rpy="0 0 -0.087266" />
+    <parent link="${prefix}link_2_2_virtual" />
+    <child link="${prefix}link_2_1" />
+    <axis xyz="0 0 -1" />
+    <mimic joint="${prefix}joint_3" multiplier="1" offset="0" />
+  </joint>
+  <link name="${prefix}link_2_1_virtual">
+   <inertial>
+     <origin xyz="0 0 0" rpy="0 0 0" />
+     <mass value="0.01" />
+     <inertia
+       ixx="0.00001"
+       ixy="0.00000"
+       ixz="0.00000"
+       iyy="0.00001"
+       iyz="0.00000"
+       izz="0.00000" />
+   </inertial>
+  </link>
+  <joint name="${prefix}l21_to_l21v" type="continuous">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="${prefix}link_2_1" />
+    <child link="${prefix}link_2_1_virtual" />
+    <axis xyz="0 0 -1" />
+    <mimic joint="${prefix}joint_2" multiplier="1" offset="0" />
+  </joint>
+  <link name="${prefix}link_2_1_real">
+     <inertial>
+       <origin
+         xyz="0.14943 -0.0063786 0.023924"
+         rpy="0 0 0" />
+       <mass
+         value="41.905" />
+       <inertia
+         ixx="0.15952"
+         ixy="0.030699"
+         ixz="-0.02238"
+         iyy="0.74929"
+         iyz="0.0001768"
+         izz="0.83836" />
+     </inertial>
+     <visual>
+       <origin
+         xyz="0 0 0"
+         rpy="0 0 0" />
+       <geometry>
+         <mesh
+           filename="package://nj_220_2_7_gazebo/meshes/link_2_1.STL" />
+       </geometry>
+       <material
+         name="">
+         <color
+           rgba="1 0 0 1" />
+       </material>
+     </visual>
+     <collision>
+       <origin
+         xyz="0 0 0"
+         rpy="0 0 0" />
+       <geometry>
+         <mesh
+           filename="package://nj_220_2_7_gazebo/meshes/link_2_1.STL" />
+       </geometry>
+     </collision>
+   </link>
+  <joint name="${prefix}l21v_to_l21r" type="fixed">
+    <origin xyz="-0.35 0 -0.015" rpy="0 0 0" />
+    <parent link="${prefix}link_2_1_virtual" />
+    <child link="${prefix}link_2_1_real" />
+    <axis xyz="0 0 0" />
+    <limit
+      lower="-6.2831853"
+      upper="6.2831853"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+  <gazebo>
+    <joint name="${prefix}closing_joint_1" type="revolute">
+      <parent>${prefix}link_1</parent>
+      <child>${prefix}link_2_1_real</child>
+      <pose relative_to="${prefix}link_1"> -0.4 0.499 -0.0955 0 0 -0.087266</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <joint name="${prefix}closing_joint_2" type="revolute">
+      <parent>${prefix}link_2_1_real</parent>
+      <child>${prefix}link_2</child>
+      <pose relative_to="${prefix}link_1"> 0 0 0.291 -3.142 0 -3.055</pose>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+  </gazebo> -->
 
   <link name="${prefix}flange">
     <inertial>

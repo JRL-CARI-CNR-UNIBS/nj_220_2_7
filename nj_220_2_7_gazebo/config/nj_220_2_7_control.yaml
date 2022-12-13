@@ -1,4 +1,4 @@
-controller_joint_names: [joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6']
+controller_joint_names: ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6']
 
 nj_220_2_7:
   sample_period: 1.0e-3
@@ -9,47 +9,45 @@ nj_220_2_7:
     publish_rate: 250
 
   robust_inverse_dynamics:
-    type: "position_controllers/JointTrajectoryController"
-    joints:
-      - joint_1
-      - joint_2
-      - joint_3
-      - joint_4
-      - joint_5
-      - joint_6
-
-  gazebo_ros_control:
-    pid_gains:
-      joint_1:
-        p: 100000.0
-        i: 1
-        d: 10.0
-      joint_2:
-        p: 100000.0
-        i: 1
-        d: 10.0
-      joint_3:
-        p: 100000.0
-        i: 1
-        d: 10.0
-      joint_4:
-        p: 100000.0
-        i: 1
-        d: 10.0
-      joint_5:
-        p: 100000.0
-        i: 1
-        d: 10.0
-      joint_6:
-        p: 100000.0
-        i: 1
-        d: 10.0
-  # robust_inverse_dynamics:
-  #   type: robot_control/RobustInverseDynamicsControl
-  #   base_frame: world
-  #   tool_frame: flange
-  #   setpoint_topic_name: "/nj_220_2_7/joint_target"
-  #   natural_frequency: 100   # natural frequency of the closed loop
-  #   damping: 1              # relative damping of the closed loop
-  #   robustness_gain: 0.01   # robustness gain
-  #   integral_gain: [0.01, 0.01, 0.01, 0.01, 0.01, 0.0001]
+    type: robot_control/RobustInverseDynamicsControl
+    base_frame: world
+    tool_frame: flange
+    setpoint_topic_name: "/nj_220_2_7/joint_target"
+    natural_frequency: 100   # natural frequency of the closed loop
+    damping: 1              # relative damping of the closed loop
+    robustness_gain: 0.01   # robustness gain
+    integral_gain: [0.01, 0.01, 0.01, 0.01, 0.01, 0.0001]
+    # type: "position_controllers/JointTrajectoryController"
+    # joints:
+    #   - joint_1
+    #   - joint_2
+    #   - joint_3
+    #   - joint_4
+    #   - joint_5
+    #   - joint_6
+  # gazebo_ros_control:
+  #   pid_gains:
+  #     joint_1:
+  #       p: 1000.0
+  #       i: 0.1
+  #       d: 10.0
+  #     joint_2:
+  #       p: 1000.0
+  #       i: 0.1
+  #       d: 10.0
+  #     joint_3:
+  #       p: 1000.0
+  #       i: 0.1
+  #       d: 10.0
+  #     joint_4:
+  #       p: 1000.0
+  #       i: 0.1
+  #       d: 10.0
+  #     joint_5:
+  #       p: 1000.0
+  #       i: 0.1
+  #       d: 10.0
+  #     joint_6:
+  #       p: 1000.0
+  #       i: 0.1
+  #       d: 10.0
