@@ -22,6 +22,16 @@
     </actuator>
   </transmission>
 
+  <!-- <transmission name="${prefix}joint_2m_trans">
+   <type>transmission_interface/SimpleTransmission</type>
+   <joint name="${prefix}joint_2m">
+     <hardwareInterface>${interface}</hardwareInterface>
+   </joint>
+   <actuator name="${prefix}joint_2m_motor">
+     <mechanicalReduction>1</mechanicalReduction>
+   </actuator>
+ </transmission> -->
+
   <transmission name="${prefix}tran_3">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}joint_3">

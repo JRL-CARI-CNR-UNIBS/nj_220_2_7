@@ -1,7 +1,9 @@
 <launch>
   <arg name="gui" default="false"/>
+  <arg name="paused" default="false"/>
+
   <include file="$(find nj_220_2_7_gazebo)/launch/nj_220_2_7_world.launch">
-    <!-- <arg name="paused" value="true"/> -->
+    <arg name="paused" value="$(arg paused)"/>
     <arg name="gui" value="$(arg gui)" />
   </include>
 
