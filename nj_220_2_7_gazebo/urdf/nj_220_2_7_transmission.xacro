@@ -11,7 +11,6 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
   <transmission name="${prefix}tran_2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}joint_2">
@@ -21,7 +20,6 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
   <transmission name="${prefix}tran_3">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}joint_3">
@@ -31,7 +29,6 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
   <transmission name="${prefix}tran_4">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}joint_4">
@@ -41,7 +38,6 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
   <transmission name="${prefix}tran_5">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}joint_5">
@@ -51,7 +47,6 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
   <transmission name="${prefix}tran_6">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="${prefix}joint_6">

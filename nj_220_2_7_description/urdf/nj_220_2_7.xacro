@@ -528,10 +528,325 @@
     <axis xyz="0 0 0" />
   </joint>
 
+  <!-- Stroke Ends -->
+  <link name="${prefix}external_piece">
+    <inertial>
+      <origin
+        xyz="0.25149 0 0.08305"
+        rpy="0 0 0" />
+      <mass
+        value="11.17" />
+      <inertia
+        ixx="0.12505051"
+        ixy="0"
+        ixz="0.20615167"
+        iyy="0.86139689"
+        iyz="0"
+        izz="0.75193919" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/external_part.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/external_part.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}joint_external_piece" type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="${prefix}link_1" />
+    <child
+      link="${prefix}external_piece" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="${prefix}motor_1">
+    <inertial>
+      <origin
+        xyz="0 0.00059 -0.13134"
+        rpy="0 0 0" />
+      <mass
+        value="74.18" />
+      <inertia
+        ixx="2.03862179"
+        ixy="0.00000294"
+        ixz="0.00001194"
+        iyy="2.03393681"
+        iyz="-0.01109897"
+        izz="0.37378121" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}joint_motor_1" type="fixed">
+    <origin
+      xyz="-0.1567 0.0905 0.12075"
+      rpy="0 0 4.194026193" />
+    <parent
+      link="${prefix}link_1" />
+    <child
+      link="${prefix}motor_1" />
+    <axis xyz="0 0 0" />
+  </joint>
+  <link name="${prefix}motor_2">
+    <inertial>
+      <origin
+        xyz="0 0.00055 -0.14385"
+        rpy="0 0 0" />
+      <mass
+        value="80.26" />
+      <inertia
+        ixx="2.5764983"
+        ixy="0.00000380"
+        ixz="0.01312758"
+        iyy="2.49873445"
+        iyz="-0.0000105"
+        izz="0.40399789" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_90.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_90.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}joint_motor_2" type="fixed">
+    <origin
+      xyz="0.400 0.2955 0.499"
+      rpy="-1.570796327 1.570796327 0" />
+    <parent
+      link="${prefix}link_1" />
+    <child
+      link="${prefix}motor_2" />
+      <axis xyz="0 0 0" />
+  </joint>
+  <link name="${prefix}motor_3">
+    <inertial>
+      <origin
+        xyz="0 0.00059 -0.13134"
+        rpy="0 0 0" />
+      <mass
+        value="74.18" />
+      <inertia
+        ixx="2.03862179"
+        ixy="0.00000294"
+        ixz="0.00001194"
+        iyy="2.03393681"
+        iyz="-0.01109897"
+        izz="0.37378121" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}joint_motor_3" type="fixed">
+    <origin
+      xyz="0.400 -0.358 0.499"
+      rpy="1.570796327 1.570796327 0" />
+    <parent
+      link="${prefix}link_1" />
+    <child
+      link="${prefix}motor_3" />
+      <axis xyz="0 0 0" />
+  </joint>
+  <link name="${prefix}motor_4">
+    <inertial>
+      <origin
+        xyz="0.00125 0 -0.0852"
+        rpy="0 0 0" />
+      <mass
+        value="28" />
+      <inertia
+        ixx="0.33783188"
+        ixy="-0.00000254"
+        ixz="-0.00532880"
+        iyy="0.34073438"
+        iyz="0.00000366"
+        izz="0.08086422" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}joint_motor_4"
+    type="fixed">
+    <origin
+      xyz="-0.200 0.21052 0.175"
+      rpy="3.141592654 1.570796327 0" />
+    <parent
+      link="${prefix}link_3" />
+    <child
+      link="${prefix}motor_4" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link name="${prefix}motor_5">
+    <inertial>
+      <origin
+        xyz="0.00125 0 -0.0852"
+        rpy="0 0 0" />
+      <mass
+        value="28" />
+      <inertia
+        ixx="0.33783188"
+        ixy="-0.00000254"
+        ixz="-0.00532880"
+        iyy="0.34073438"
+        iyz="0.00000366"
+        izz="0.08086422" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}joint_motor_5"
+    type="fixed">
+    <origin
+      xyz="-0.1675 0 0.250"
+      rpy="1.570796327 0 -1.570796327" />
+    <parent
+      link="${prefix}link_3" />
+    <child
+      link="${prefix}motor_5" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link name="${prefix}motor_6">
+    <inertial>
+      <origin
+        xyz="0.00125 0 -0.0852"
+        rpy="0 0 0" />
+      <mass
+        value="28" />
+      <inertia
+        ixx="0.33783188"
+        ixy="-0.00000254"
+        ixz="-0.00532880"
+        iyy="0.34073438"
+        iyz="0.00000366"
+        izz="0.08086422" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="${prefix}joint_motor_6"
+    type="fixed">
+    <origin
+      xyz="-0.1675 0.155 0.34577"
+      rpy="-1.570796327 0 1.570796327" />
+    <parent
+      link="${prefix}link_3" />
+    <child
+      link="${prefix}motor_6" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <!-- End Stroke End -->
+
 <xacro:include filename="$(find nj_220_2_7_description)/urdf/nj_220_2_7_transmission.xacro" />
 <xacro:nj_220_2_7_transmission prefix="${prefix}" interface="${interface}"/>
-<xacro:include filename="$(find nj_220_2_7_description)/urdf/nj_220_2_7_gazebo.xacro" />
-<xacro:nj_220_2_7_roscontrol prefix="${prefix}"/>
 
 </xacro:macro>
 </robot>

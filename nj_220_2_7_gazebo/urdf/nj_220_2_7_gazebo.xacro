@@ -27,5 +27,67 @@
       </plugin>
   </gazebo>
 
+  <!-- <gazebo reference="nj_220_2_7">
+    <gravity>true</gravity>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo> -->
+
+  <gazebo reference="${prefix}base_link">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_1">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2_1">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2_2">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2_3">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_3_virtual">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_3">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_4">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_5">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_6">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
 </xacro:macro>
 </robot>

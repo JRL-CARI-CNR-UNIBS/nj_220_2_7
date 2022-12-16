@@ -36,7 +36,7 @@ level1_hw:
   maximum_missing_cycles: 1000
   kin_update_period: 0.002
   base_link: "world"
-  tool_link: "link_6"
+  tool_link: "flange"
   robot_description_param: /robot_description
   robot_description_planning_param: /robot_description_planning
   kin_update_period: 0.002
