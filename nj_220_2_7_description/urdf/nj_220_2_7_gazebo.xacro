@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot  xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="nj_220_2_7_roscontrol"  params="prefix">
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>${prefix}/nj_220_2_7</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <gazebo reference="${prefix}link_6_to_flange">
+      <provideFeedback>true</provideFeedback>
+      <disableFixedJointLumping>true</disableFixedJointLumping>
+      <preserveFixedJoint>true</preserveFixedJoint>
+  </gazebo>
+
+  <gazebo>
+      <plugin name="ft_sensor" filename="libgazebo_ros_ft_sensor.so">
+          <updateRate>1000.0</updateRate>
+          <topicName>${prefix}gripper/wrench</topicName>
+          <jointName>${prefix}link_6_to_flange</jointName>
+      </plugin>
+  </gazebo>
+
+  <!-- <gazebo reference="nj_220_2_7">
+    <gravity>true</gravity>
+    <selfCollide>false</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo> -->
+
+  <gazebo reference="${prefix}base_link">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_1">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2_1">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2_2">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_2_3">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_3_virtual">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_3">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_4">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_5">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="${prefix}link_6">
+    <gravity>true</gravity>
+    <selfCollide>0</selfCollide>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+</xacro:macro>
+</robot>

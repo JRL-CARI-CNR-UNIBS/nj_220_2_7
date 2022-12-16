@@ -103,6 +103,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        link_2_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         link_3:
           Alpha: 1
           Show Axes: false
@@ -188,6 +192,8 @@ Visualization Manager:
           Value: false
         link_2_2_virtual:
           Value: false
+        link_2_3:
+          Value: false
         link_3:
           Value: false
         link_3_virtual:
@@ -241,7 +247,8 @@ Visualization Manager:
               link_2_1:
                 link_2_2_virtual:
                   link_2_2:
-                    {}
+                    link_2_3:
+                      {}
               motor_1:
                 {}
               motor_2:
@@ -314,17 +321,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.32945016026496887
-        Y: 0.18937301635742188
-        Z: 1.7362560033798218
+        X: 0.22446522116661072
+        Y: 0.0015968380030244589
+        Z: 1.4515509605407715
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.425398588180542
+      Pitch: 0.5403985977172852
       Target Frame: <Fixed Frame>
-      Yaw: 5.13040828704834
+      Yaw: 4.760396480560303
     Saved: ~
 Window Geometry:
   Displays:
@@ -342,5 +349,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1920
-  X: 1920
+  X: 0
   Y: 0
