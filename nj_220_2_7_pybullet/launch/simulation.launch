@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+  <include file="$(find nj_220_2_7_pybullet)/launch/load_config.launch" />
+
+  <node name="nj_220_2_7_pybullet" pkg="nj_220_2_7_pybullet" type="nj_220_2_7_pybullet.py" output="screen"/>
+  
+</launch>

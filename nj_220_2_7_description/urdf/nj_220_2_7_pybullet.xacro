@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="nj_220_2_7" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:include filename="$(find nj_220_2_7_description)/urdf/nj_220_2_7.xacro" />
+
+<xacro:property name="prefix" value="''" />
+<xacro:property name="type"   value="'pybullet'" />
+
+<xacro:nj_220_2_7 prefix="${prefix}" type="${type}"/>
+
+</robot>

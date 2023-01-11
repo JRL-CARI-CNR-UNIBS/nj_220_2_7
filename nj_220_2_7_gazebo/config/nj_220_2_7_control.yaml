@@ -36,12 +36,12 @@ nj_220_2_7:
   joint2_position_controller:
     type: effort_controllers/JointPositionController
     joint: joint_2
-    pid: {p: 10000.0, i: 1, d: 10.0}
+    pid: {p: 100000.0, i: 1000, d: 1.0}
 
   joint3_position_controller:
     type: effort_controllers/JointPositionController
     joint: joint_3
-    pid: {p: 10000.0, i: 10, d: 10.0}
+    pid: {p: 100000.0, i: 1000, d: 1.0}
 
   joint4_position_controller:
     type: effort_controllers/JointPositionController
