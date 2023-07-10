@@ -1,0 +1,13 @@
+simulation_step_time: 0.005
+real_step_time : 0.005
+# camera_init:
+#   distance: 1.20
+#   yaw: 0.40
+#   pitch: -42.60
+#   target_position: [0.0,0.59,-0.54]
+
+joint_state_publish_rate: 250
+joint_target_publish_rate: 250
+
+robots:
+- 'nj_220_2_7'

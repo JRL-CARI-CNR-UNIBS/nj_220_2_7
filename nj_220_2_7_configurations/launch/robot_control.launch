@@ -2,7 +2,6 @@
 
 <launch>
   <arg name="fake" default="true"/>
-  <arg name="gazebo" default="false"/>
   <arg name="launch_prefix" default=""/>
   <arg name="controllers_configurations" default="$(find nj_220_2_7_configurations)/config/controllers_configurations.yaml"/>
   <arg name="controllers_dispatches" default="$(find nj_220_2_7_configurations)/config/controllers_dispatches.yaml"/>
@@ -10,9 +9,7 @@
 
 <!-- Load CNR_ROS_CONTROL -->
 <!--Load robot hardware-->
-<rosparam if     = "$(arg gazebo)" command="load" file="$(find nj_220_2_7_configurations)/config/level0_gazebo_hw.yaml" />
-<rosparam unless = "$(arg gazebo)" command="load" file="$(find nj_220_2_7_configurations)/config/level0_hw.yaml" />
-
+<rosparam command="load" file="$(find nj_220_2_7_configurations)/config/level0_hw.yaml" />
 <rosparam command="load" file="$(find nj_220_2_7_configurations)/config/level1_hw.yaml" />
 
 <!--Load controllers-->
@@ -35,7 +32,6 @@
   <!--Load configurations-->
   <rosparam command="load" file="$(find nj_220_2_7_configurations)/config/controllers_configurations.yaml" />
 </node>
-
 
 <node pkg="cnr_configuration_manager" type="dispatcher" name="configuration_dispatcher" output="screen" >
 <rosparam>

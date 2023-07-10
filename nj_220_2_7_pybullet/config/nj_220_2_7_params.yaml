@@ -1,22 +1,43 @@
-simulation_step_time: 0.01
-
-joint_state_publish_rate: 250
-
-robots:
-- 'nj_220_2_7'
-
 nj_220_2_7:
   start_position: [0,0,0]
   start_orientation: [0,0,0]
+  fixed: 1    # 1 to fix robot to world, 0 to spawn it unfixed
   foulder_path: '/home/gauss/projects/personal_ws/src/nj_220_2_7/nj_220_2_7_description/urdf'
-  file_name: 'nj_220_2_7_pybullet.urdf'
-  controlled_joint_name: ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6']
+  xacro_file_name: 'nj_220_2_7_pybullet'   # an urdf file with the same name will be generated
+  # urdf_file_name: 'nj_220_2_7_pybullet'   # you can use directly a urdf file
+  controlled_joint_name: ['joint_1', 'joint_2', 'joint_3'] #, 'joint_4', 'joint_5', 'joint_6']
+  joint_control_mode : 'position' # positon (which is in fact POSITION_VELOCITY_PD), velocity, torque and pd.
   constraints:
     - parent_body: 'nj_220_2_7'
       parent_link: 'link_2_3'
       child_body: 'nj_220_2_7'
       child_link: 'link_2_4'
-      type: 'fixed'                   # joint type: prismatic, fixed, point2point, gear
-      axis: [0,0,0]                   # joint axis, in child link frame
+      type: 'fixed'             # joint type: prismatic, fixed, point2point, gear
+      axis: [1,1,1]                   # joint axis, in child link frame
       parent_frame_position: [0,0,0]  # position of the joint frame relative to parent center of mass frame.
       child_frame_position: [0,0,0]   # position of the joint frame relative to a given child center of mass frame (or world origin if no child specified)
+      parent_frame_orientation: [0,0,0,1] # the orientation of the joint frame relative to parent center of mass coordinate frame
+      child_frame_orientation: [0,0,0,1]  # the orientation of the joint frame relative to the child center of mass coordinate frame (or world origin frame if no child specified)
+      max_force: 99999999
+    # - parent_body: 'nj_220_2_7'
+    #   parent_link: 'link_2_4'
+    #   child_body: 'nj_220_2_7'
+    #   child_link: 'link_3'
+    #   type: 'fixed'             # joint type: prismatic, fixed, point2point, gear
+    #   axis: [0,0,0]                   # joint axis, in child link frame
+    #   parent_frame_position: [0,0,0]  # position of the joint frame relative to parent center of mass frame.
+    #   # parent_frame_position: [-0.04239 0.01939 0.2104]  # position of the joint frame relative to parent center of mass frame.
+    #   child_frame_position: [0,0,0]   # position of the joint frame relative to a given child center of mass frame (or world origin if no child specified)
+    #   parent_frame_orientation: [0,0,0,1] # the orientation of the joint frame relative to parent center of mass coordinate frame
+    #   child_frame_orientation: [0,0,0,1]  # the orientation of the joint frame relative to the child center of mass coordinate frame (or world origin frame if no child specified)
+
+    # - parent_body: 'nj_220_2_7'
+    #   parent_link: 'link_2_2'
+    #   child_body: 'nj_220_2_7'
+    #   child_link: 'link_3'
+    #   type: 'fixed'             # joint type: prismatic, fixed, point2point, gear
+    #   axis: [0,1,0]                   # joint axis, in child link frame
+    #   parent_frame_position: [0,0,1.175]  # position of the joint frame relative to parent center of mass frame.
+    #   child_frame_position: [-0.349, -0.180, -0.030]   # position of the joint frame relative to a given child center of mass frame (or world origin if no child specified)
+    #   parent_frame_orientation: [0,0,0,1] # the orientation of the joint frame relative to parent center of mass coordinate frame
+    #   child_frame_orientation: [0,0,0,1]  # the orientation of the joint frame relative to the child center of mass coordinate frame (or world origin frame if no child specified)

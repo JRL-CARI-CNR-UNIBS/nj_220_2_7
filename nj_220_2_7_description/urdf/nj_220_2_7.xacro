@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <robot name="nj_220_2_7" xmlns:xacro="http://ros.org/wiki/xacro">
 <xacro:macro name="nj_220_2_7" params="prefix:='' interface:=hardware_interface/EffortJointInterface type:=rviz">
-<!-- <xacro:macro name="nj_220_2_7" params="prefix:='' interface:=hardware_interface/PositionJointInterface type:=urdf"> -->
 
   <xacro:property name="joint_1_vel_limit" value="1.74533" />    <!--  100°/s -->
   <xacro:property name="joint_2_vel_limit" value="1.5708"  />    <!--  90°/s -->
@@ -39,7 +38,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/base_link.STL" />
+          filename="package://nj_220_2_7_description/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -53,7 +52,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/base_link.STL" />
+          filename="package://nj_220_2_7_description/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -78,7 +77,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_1.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_1.STL" />
       </geometry>
       <material
         name="">
@@ -92,7 +91,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_1.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_1.STL" />
       </geometry>
     </collision>
   </link>
@@ -133,7 +132,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_2.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_2.STL" />
       </geometry>
       <material
         name="">
@@ -147,7 +146,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_2.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_2.STL" />
       </geometry>
     </collision>
   </link>
@@ -166,31 +165,6 @@
       upper="1.658062789"
       effort="${joint_2_eff_limit}"
       velocity="${joint_2_vel_limit}" />
-  </joint>
-  <link name="${prefix}link_3_virtual">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="0.01" />
-      <inertia
-        ixx="0.00001"
-        ixy="0.00000"
-        ixz="0.00000"
-        iyy="0.00001"
-        iyz="0.00000"
-        izz="0.00000" />
-    </inertial>
-  </link>
-  <joint name="${prefix}joint_2m" type="revolute">
-    <origin xyz="0 0 1.175" rpy="0 0 0" />
-    <parent link="${prefix}link_2" />
-    <child link="${prefix}link_3_virtual" />
-    <axis xyz="0 1 0" />
-    <mimic joint="${prefix}joint_2" multiplier="-1" offset="0" />
-    <limit
-      lower="-6.2831853"
-      upper="6.2831853"
-      effort="100000"
-      velocity="${joint_6_vel_limit}" />
   </joint>
   <link name="${prefix}link_3">
     <inertial>
@@ -213,7 +187,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://nj_220_2_7_gazebo/meshes/link_3.STL" />
+            filename="package://nj_220_2_7_description/meshes/link_3.STL" />
         </geometry>
         <material
           name="">
@@ -227,18 +201,18 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://nj_220_2_7_gazebo/meshes/link_3.STL" />
+            filename="package://nj_220_2_7_description/meshes/link_3.STL" />
         </geometry>
       </collision>
   </link>
 
   <xacro:if value="${type == 'pybullet'}">
-    <joint name="${prefix}joint_3m" type="revolute">
+    <joint name="${prefix}free_joint" type="revolute">
       <origin
-        xyz="0 0 0"
+        xyz="0 0 1.175"
         rpy="0 0 0" />
       <parent
-        link="${prefix}link_3_virtual" />
+        link="${prefix}link_2" />
       <child
         link="${prefix}link_3" />
       <axis
@@ -248,10 +222,34 @@
         upper="6.2831853"
         effort="0"
         velocity="0" />
-      <mimic joint="${prefix}joint_3" multiplier="-1" offset="0" />
     </joint>
   </xacro:if>
   <xacro:if value="${type == 'rviz'}">
+    <link name="${prefix}link_3_virtual">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.01" />
+        <inertia
+          ixx="0.00001"
+          ixy="0.00000"
+          ixz="0.00000"
+          iyy="0.00001"
+          iyz="0.00000"
+          izz="0.00000" />
+      </inertial>
+    </link>
+    <joint name="${prefix}joint_2m" type="revolute">
+      <origin xyz="0 0 1.175" rpy="0 0 0" />
+      <parent link="${prefix}link_2" />
+      <child link="${prefix}link_3_virtual" />
+      <axis xyz="0 1 0" />
+      <mimic joint="${prefix}joint_2" multiplier="-1" offset="0" />
+      <limit
+        lower="-6.2831853"
+        upper="6.2831853"
+        effort="100000"
+        velocity="${joint_6_vel_limit}" />
+    </joint>
     <joint name="${prefix}joint_3" type="revolute">
       <origin
         xyz="0 0 0"
@@ -291,7 +289,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_4.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_4.STL" />
       </geometry>
       <material
         name="">
@@ -305,7 +303,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_4.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_4.STL" />
       </geometry>
     </collision>
   </link>
@@ -346,7 +344,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_5.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_5.STL" />
       </geometry>
       <material
         name="">
@@ -360,7 +358,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_5.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_5.STL" />
       </geometry>
     </collision>
   </link>
@@ -401,7 +399,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_6.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_6.STL" />
       </geometry>
       <material
         name="">
@@ -415,7 +413,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_6.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_6.STL" />
       </geometry>
     </collision>
   </link>
@@ -435,6 +433,7 @@
       effort="${joint_6_eff_limit}"
       velocity="${joint_6_vel_limit}" />
   </joint>
+
   <link name="${prefix}link_2_1">
     <inertial>
       <origin
@@ -456,7 +455,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_2_1.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_2_1.STL" />
       </geometry>
       <material
         name="">
@@ -470,7 +469,52 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_2_1.STL" />
+          filename="package://nj_220_2_7_description/meshes/link_2_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link name="${prefix}link_2_2">
+    <!-- <inertial>
+      <origin
+        xyz="-0.06443 0.01485 0.51885"
+        rpy="0 0 0" />
+      <mass
+        value="60.72" />
+      <inertia
+        ixx="21.93937071"
+        ixy="-0.05733724"
+        ixz="-1.89190480"
+        iyy="22.27041146"
+        iyz="0.47064670"
+        izz="0.41028863" />
+    </inertial> -->
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia
+        ixx="0.00001"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="0.00001"
+        iyz="0.00000"
+        izz="0.00000" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_description/meshes/link_2_2.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://nj_220_2_7_description/meshes/link_2_2.STL" />
       </geometry>
     </collision>
   </link>
@@ -487,6 +531,17 @@
        effort="${joint_3_eff_limit}"
        velocity="${joint_3_vel_limit}" />
     </joint>
+    <joint name="${prefix}joint_2_1" type="revolute">
+      <origin xyz="-0.34867 0.015 -0.0305" rpy="0 0 0" />
+      <parent link="${prefix}link_2_1" />
+      <child link="${prefix}link_2_2" />
+      <axis xyz="0 1 0" />
+      <limit
+        lower="-6.2831853"
+        upper="6.2831853"
+        effort="0"
+        velocity="0" />
+    </joint>
   </xacro:if>
   <xacro:if value="${type == 'rviz'}">
     <joint name="${prefix}joint_3m" type="revolute">
@@ -501,9 +556,46 @@
         velocity="0" />
         <mimic joint="${prefix}joint_3" multiplier="1" offset="0" />
     </joint>
+    <link name="${prefix}link_2_2_virtual">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.01" />
+        <inertia
+          ixx="0.00001"
+          ixy="0.00000"
+          ixz="0.00000"
+          iyy="0.00001"
+          iyz="0.00000"
+          izz="0.00000" />
+      </inertial>
+      <collision>
+        <origin xyz="0 ${0.05} 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.01 0.1 0.01"/>
+        </geometry>
+        <material name="aluminium">
+          <color rgba="${132/256} ${135/256} ${137/256} 1" />
+        </material>
+      </collision>
+    </link>
+    <joint name="${prefix}joint_2_1" type="continuous">
+      <origin xyz="-0.34867 0.015 -0.0305" rpy="0 0 0" />
+      <parent link="${prefix}link_2_1" />
+      <child link="${prefix}link_2_2_virtual" />
+      <axis xyz="0 1 0" />
+      <mimic joint="${prefix}joint_3" multiplier="1" offset="0"/>
+    </joint>
+    <joint name="${prefix}joint_2_2" type="continuous">
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <parent link="${prefix}link_2_2_virtual" />
+      <child link="${prefix}link_2_2" />
+      <axis xyz="0 1 0" />
+      <mimic joint="${prefix}joint_2" multiplier="1" offset="0"/>
+    </joint>
   </xacro:if>
 
-  <link name="${prefix}link_2_2_virtual">
+
+  <link name="${prefix}link_2_3">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <mass value="0.01" />
@@ -515,67 +607,52 @@
         iyz="0.00000"
         izz="0.00000" />
     </inertial>
-  </link>
-  <joint name="${prefix}joint_2_1" type="continuous">
-    <origin xyz="-0.34867 0.015 -0.0305" rpy="0 0 0" />
-    <parent link="${prefix}link_2_1" />
-    <child link="${prefix}link_2_2_virtual" />
-    <axis xyz="0 1 0" />
-    <mimic joint="${prefix}joint_3" multiplier="1" offset="0"/>
-  </joint>
-  <link name="${prefix}link_2_2">
-    <inertial>
-      <origin
-        xyz="-0.06443 0.01485 0.51885"
-        rpy="0 0 0" />
-      <mass
-        value="60.72" />
-      <inertia
-        ixx="21.93937071"
-        ixy="-0.05733724"
-        ixz="-1.89190480"
-        iyy="22.27041146"
-        iyz="0.47064670"
-        izz="0.41028863" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_2_2.STL" />
-      </geometry>
-    </visual>
     <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/link_2_2.STL" />
+        <box size="0.01 0.5 0.01"/>
       </geometry>
+      <material name="aluminium">
+        <color rgba="${132/256} ${135/256} ${137/256} 1" />
+      </material>
     </collision>
-  </link>
-  <joint name="${prefix}joint_2_2" type="continuous">
-    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
-    <parent link="${prefix}link_2_2_virtual" />
-    <child link="${prefix}link_2_2" />
-    <axis xyz="0 1 0" />
-    <mimic joint="${prefix}joint_2" multiplier="1" offset="0"/>
-  </joint>
-  <link name="${prefix}link_2_3">
     </link>
   <joint name="${prefix}joint_2_3" type="continuous">
     <origin xyz="0 0 1.175" rpy="0 0 0" />
     <parent link="${prefix}link_2_2" />
     <child link="${prefix}link_2_3" />
     <axis xyz="0 1 0" />
+    <limit
+      lower="-6.2831853"
+      upper="6.2831853"
+      effort="0"
+      velocity="0" />
   </joint>
   <link name="${prefix}link_2_4">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia
+        ixx="0.00001"
+        ixy="0.00000"
+        ixz="0.00000"
+        iyy="0.00001"
+        iyz="0.00000"
+        izz="0.00000" />
+    </inertial>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.01 0.5 0.01"/>
+      </geometry>
+      <material name="aluminium">
+        <color rgba="${132/256} ${135/256} ${137/256} 1" />
+      </material>
+    </collision>
     </link>
-  <joint name="${prefix}joint_2_4" type="continuous">
+  <joint name="${prefix}joint_2_4" type="fixed">
     <origin xyz="-0.34867 -0.1795 -0.0305" rpy="0 0 0" />
+    <!-- <origin xyz="0 0 0" rpy="0 0 0" /> -->
     <parent link="${prefix}link_3" />
     <child link="${prefix}link_2_4" />
     <axis xyz="0 1 0" />
@@ -623,7 +700,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/external_part.STL" />
+          filename="package://nj_220_2_7_description/meshes/external_part.STL" />
       </geometry>
     </visual>
     <collision>
@@ -632,7 +709,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/external_part.STL" />
+          filename="package://nj_220_2_7_description/meshes/external_part.STL" />
       </geometry>
     </collision>
   </link>
@@ -667,7 +744,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_80.STL" />
       </geometry>
     </visual>
     <collision>
@@ -676,7 +753,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_80.STL" />
       </geometry>
     </collision>
   </link>
@@ -711,7 +788,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_90.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_90.STL" />
       </geometry>
     </visual>
     <collision>
@@ -720,7 +797,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_90.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_90.STL" />
       </geometry>
     </collision>
   </link>
@@ -755,7 +832,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_80.STL" />
       </geometry>
     </visual>
     <collision>
@@ -764,7 +841,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_80.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_80.STL" />
       </geometry>
     </collision>
   </link>
@@ -799,7 +876,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_50.STL" />
       </geometry>
     </visual>
     <collision>
@@ -808,7 +885,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_50.STL" />
       </geometry>
     </collision>
   </link>
@@ -845,7 +922,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_50.STL" />
       </geometry>
     </visual>
     <collision>
@@ -854,7 +931,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_50.STL" />
       </geometry>
     </collision>
   </link>
@@ -891,7 +968,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_50.STL" />
       </geometry>
     </visual>
     <collision>
@@ -900,7 +977,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://nj_220_2_7_gazebo/meshes/motor_50.STL" />
+          filename="package://nj_220_2_7_description/meshes/motor_50.STL" />
       </geometry>
     </collision>
   </link>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<launch>
+  <rosparam command="load" file="$(find nj_220_2_7_pybullet)/config/nj_220_2_7_params.yaml"/>
+</launch>

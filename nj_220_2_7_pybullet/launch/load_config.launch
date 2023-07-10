@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 
 <launch>
-  <rosparam command="load" file="$(find nj_220_2_7_pybullet)/config/nj_220_2_7_params.yaml"/>
+  <include file="$(find nj_220_2_7_pybullet)/launch/load_robot_config.launch" />
+  <rosparam command="load" file="$(find nj_220_2_7_pybullet)/config/pybullet_param.yaml"/>
 </launch>
